@@ -24,8 +24,9 @@ public class CheckpointManager : MonoBehaviour
     public GameObject CheckpointWall3;
     public GameObject CheckpointWall4;
 
-    // victory screen
+    // victory screen & music
     public GameObject EndGamePanel;
+    public AudioClip victoryMusic;
 
 
     void Awake()
@@ -109,6 +110,7 @@ public class CheckpointManager : MonoBehaviour
         }
     } 
 
+    // method for showing the victory screen upon completing a lap
     void LapCleared()
     {
         if (P1Laps == 1 || P2Laps == 1)
@@ -116,6 +118,10 @@ public class CheckpointManager : MonoBehaviour
             EndGamePanel.SetActive(true);
             // freezes the game
             Time.timeScale = 0.0f;
+
+            SoundManager.Instance.PauseMusic();
+            SoundManager.Instance.PlayOneShot(victoryMusic);
+            SoundManager.Instance.setEffectVolume(0.1f);
         }
     }
 }

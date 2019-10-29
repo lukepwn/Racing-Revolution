@@ -11,7 +11,10 @@ public class P2Car1Button : MonoBehaviour
 
     public GameObject Spawnpoint;
 
+    // to disable spawning of another car for player
     public Button P2ChooseOtherCar;
+    // enable start button
+    public Button startButton;
 
 
     // Start is called before the first frame update
@@ -36,5 +39,6 @@ public class P2Car1Button : MonoBehaviour
 
         this.GetComponent<Button>().interactable = false;
         P2ChooseOtherCar.interactable = false;
+        startButton.interactable = true;
     }
 }

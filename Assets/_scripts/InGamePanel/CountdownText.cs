@@ -31,7 +31,7 @@ public class CountdownText : MonoBehaviour
         {
             player1Car.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
             player2Car.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-            this.gameObject.SetActive(false);
+            this.transform.parent.gameObject.SetActive(false);
         }
     }
 }

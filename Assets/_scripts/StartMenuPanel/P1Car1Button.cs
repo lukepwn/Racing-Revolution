@@ -11,7 +11,10 @@ public class P1Car1Button : MonoBehaviour
 
     public GameObject Spawnpoint;
 
-    public Button P2ChooseOtherCar;
+    // to disable spawning of another car for player
+    public Button P1ChooseOtherCar;
+    // enable start button
+    public Button startButton;
 
 
 
@@ -36,6 +39,7 @@ public class P1Car1Button : MonoBehaviour
 
 
         this.GetComponent<Button>().interactable = false;
-        P2ChooseOtherCar.interactable = false;
+        P1ChooseOtherCar.interactable = false;
+        startButton.interactable = true;
     }
 }

@@ -80,6 +80,7 @@
     <Compile Include="Assets\_scripts\InGamePanel\SpeedBar2.cs" />
     <Compile Include="Assets\_scripts\InGamePanel\Speedometer.cs" />
     <Compile Include="Assets\_scripts\InGamePanel\VictoryPlayerNameText.cs" />
+    <Compile Include="Assets\_scripts\SoundManager.cs" />
     <Compile Include="Assets\_scripts\StartMenuPanel\CheckpointsText.cs" />
     <Compile Include="Assets\_scripts\StartMenuPanel\InstructionsBackButton.cs" />
     <Compile Include="Assets\_scripts\StartMenuPanel\InstructionsButton.cs" />

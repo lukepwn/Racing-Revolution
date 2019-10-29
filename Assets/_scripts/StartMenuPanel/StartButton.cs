@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class StartButton : MonoBehaviour
 {
+    public AudioClip gameSoundTrack;
+
     public GameObject GameLevel;
     public GameObject MenuPanel;
     public GameObject IngamePanel1;
@@ -23,6 +25,7 @@ public class StartButton : MonoBehaviour
         Button btn = gameObject.GetComponent<Button>();
         btn.onClick.AddListener(TaskOnClick);
         btn.onClick.AddListener(LightOn);
+        btn.interactable = false;
     }
 
     void TaskOnClick()
@@ -44,6 +47,13 @@ public class StartButton : MonoBehaviour
         SpeedometerPanel1.SetActive(true);
         Debug.Log("Turning on Speedometer2");
         SpeedometerPanel2.SetActive(true);
+
+
+
+        // turn off menu music & play gameplay music
+        SoundManager.Instance.PauseMusic();
+        SoundManager.Instance.PlayMusic(gameSoundTrack);
+        SoundManager.Instance.setMusicVolume(0.2f);
     }
 
     void LightOn()
