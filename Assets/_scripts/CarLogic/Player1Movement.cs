@@ -64,6 +64,7 @@ public class Player1Movement : MonoBehaviour
             topRight.motorTorque = y * motorForce;
             botLeft.motorTorque = y * motorForce;
             botRight.motorTorque = y * motorForce;
+			Debug.Log(topLeft.motorTorque);
         }
 
         else
