@@ -65,8 +65,6 @@
   <ItemGroup>
     <Compile Include="Assets\_scripts\CameraSwitch.cs" />
     <Compile Include="Assets\_scripts\CameraTopDown.cs" />
-    <Compile Include="Assets\_scripts\CarLogic\isCar1.cs" />
-    <Compile Include="Assets\_scripts\CarLogic\isCar2.cs" />
     <Compile Include="Assets\_scripts\CarLogic\Player1Movement.cs" />
     <Compile Include="Assets\_scripts\CarLogic\Player2Movement.cs" />
     <Compile Include="Assets\_scripts\InGamePanel\CountdownText.cs" />
@@ -82,18 +80,14 @@
     <Compile Include="Assets\_scripts\InGamePanel\VictoryPlayerNameText.cs" />
     <Compile Include="Assets\_scripts\SoundManager.cs" />
     <Compile Include="Assets\_scripts\StartMenuPanel\CheckpointsText.cs" />
+    <Compile Include="Assets\_scripts\StartMenuPanel\ChooseCarButton.cs" />
     <Compile Include="Assets\_scripts\StartMenuPanel\InstructionsBackButton.cs" />
     <Compile Include="Assets\_scripts\StartMenuPanel\InstructionsButton.cs" />
     <Compile Include="Assets\_scripts\StartMenuPanel\LapsText.cs" />
-    <Compile Include="Assets\_scripts\StartMenuPanel\P1Car1Button.cs" />
-    <Compile Include="Assets\_scripts\StartMenuPanel\P1Car2Button.cs" />
-    <Compile Include="Assets\_scripts\StartMenuPanel\P2Car1Button.cs" />
-    <Compile Include="Assets\_scripts\StartMenuPanel\P2Car2Button.cs" />
     <Compile Include="Assets\_scripts\StartMenuPanel\SettingsBackButton.cs" />
     <Compile Include="Assets\_scripts\StartMenuPanel\SettingsButton.cs" />
     <Compile Include="Assets\_scripts\StartMenuPanel\StartButton.cs" />
     <Compile Include="Assets\_scripts\TrackLogic\CheckpointManager.cs" />
-    <Compile Include="Assets\_scripts\TrackLogic\CheckPointWall.cs" />
     <Compile Include="Assets\_scripts\TrackLogic\CheckPointWall1.cs" />
     <Compile Include="Assets\_scripts\TrackLogic\CheckPointWall2.cs" />
     <Compile Include="Assets\_scripts\TrackLogic\CheckPointWall3.cs" />

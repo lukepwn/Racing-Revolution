@@ -17,8 +17,11 @@ public class SettingsBackButton : MonoBehaviour
     void TaskOnClick()
     {
         menuPanel.SetActive(true);
+
+        menuPanel.transform.GetChild(0).GetComponent<Button>().Select();
+
         gameObject.transform.parent.gameObject.SetActive(false);
-        Debug.Log("turning off" + gameObject.transform.parent.gameObject);
+        SoundManager.Instance.PlayOneShot(SoundManager.Instance.buttonSound);
     }
 
 }

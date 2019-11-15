@@ -6,29 +6,37 @@ using UnityEngine.UI;
 public class Player1Movement : MonoBehaviour
 {
     SpeedBar speedBar;
-
-    //public Text rpmText;
-    //public Text speedText;
-
     public static float speedText;
+	
     public WheelCollider topLeft, topRight, botLeft, botRight;
     public Transform topRightT, topLeftT;
-    public float maxSteerAngle;
-    public float motorForce;
     public Rigidbody rb;
     public ParticleSystem exhaustEffect;
 
-    private float speedCount;
+	[Header("Sound")]
+    public AudioClip accelerate;
+    public AudioClip collisionSound;
+	
+	[Header("Movement_Specs")]
+    public float speedCount;
+	
     private float decelerationSpeed = 30f;
     private float x;
     private float y;
-    private float m_steeringAngle;
     private float maxSpeed = 17;
-    
-    void Awake()
-    {
-        
-    }
+	private float currentRPM;
+	private float maxRPM = 3000;
+	private float motorForce = 500;
+
+	[Header("Ackermann_Specs")]
+	public float ackermanLeft;
+	public float ackermanRight;
+	
+	// realistic specs
+	private float wheelbase = 2.55f;
+	private float reartrack = 1.525f;
+	private float turnradius = 11f;
+	private float turntime = 8f;
 
     void Start()
     {
@@ -46,35 +54,67 @@ public class Player1Movement : MonoBehaviour
         y = Input.GetAxis("Vertical_p2");
     }
 
-    private void Effects()
-    {   
-
-    }
-    private void Movement()
+    /* private void Effects()
     {
-
-        exhaustEffect.Play();
-        exhaustEffect.loop = true;
-
-        // use magnitude for length - always positive
-        if (rb.velocity.magnitude < maxSpeed)
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKey(KeyCode.W))
         {
-            //acceleration
-            topLeft.motorTorque = y * motorForce;
-            topRight.motorTorque = y * motorForce;
-            botLeft.motorTorque = y * motorForce;
-            botRight.motorTorque = y * motorForce;
-			Debug.Log(topLeft.motorTorque);
+            // play particle effect
+            exhaustEffect.Play();
+            exhaustEffect.loop = true;
+
         }
 
         else
         {
+			exhaustEffect.Stop();
+            exhaustEffect.loop = false;
+        }
+    } */
+    public void Movement()
+    {
+
+		Debug.Log(topLeft.motorTorque);
+		//Debug.Log(motorForce);
+        // use magnitude for length - always positive
+        if (rb.velocity.magnitude < maxSpeed)
+        {
+			if (motorForce < maxRPM) 
+			{
+				//acceleration
+				topLeft.motorTorque = y * motorForce;
+				topRight.motorTorque = y * motorForce;
+				botLeft.motorTorque = y * motorForce;
+				botRight.motorTorque = y * motorForce;
+				
+				
+				//if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKey(KeyCode.UpArrow))
+					//motorForce += 1f;
+				
+				//else
+					//motorForce -= 1f;
+				
+				//motorForce = y * motorForce;
+				//Debug.Log(topLeft.motorTorque); // always 300
+				//currentRPM += 1 * Time.deltaTime;
+				//SoundManager.Instance.PlayOneShot(accelerate);
+			}
+			
+			else 
+				ShiftGear();
+        }
+
+        else
+        {
+
             // set upper limit for speed
             topLeft.motorTorque = 0;
             topRight.motorTorque = 0;
             botLeft.motorTorque = 0;
             botRight.motorTorque = 0;
+			
+			
         }
+		//Debug.Log(currentRPM);
 
 
         //if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) )
@@ -84,12 +124,23 @@ public class Player1Movement : MonoBehaviour
         //speedText.text = Mathf.Round(rb.velocity.magnitude * 10) + " KM/H";
 
         speedText = Mathf.Round(rb.velocity.magnitude * 10);
-
+		
+		
     }
 
+    private void ShiftGear() 
+	{
+		
+		//Debug.Log(topLeft.motorTorque); // always 300
+		
+		motorForce = 200;
+			
+	}
+	
+	// ackermann steering based on small sedan
     private void Steer()
     {
-        //steering based on max speed
+        /* //steering based on max speed
         var actualSpeed = rb.velocity.magnitude / 50;
         var currentSteer = Mathf.Lerp(10, 1, actualSpeed);
         currentSteer *= x;
@@ -98,7 +149,35 @@ public class Player1Movement : MonoBehaviour
 
         //front wheel drive
         topLeft.steerAngle = currentSteer;
-        topRight.steerAngle = currentSteer;
+        topRight.steerAngle = currentSteer; */
+		
+		if (x > 0) 
+		{
+			ackermanLeft = Mathf.Rad2Deg * Mathf.Atan(wheelbase/(turnradius + (reartrack/2))) * x;
+			ackermanRight = Mathf.Rad2Deg * Mathf.Atan(wheelbase/(turnradius - (reartrack/2))) * x;
+			
+			topLeft.steerAngle = Mathf.Lerp(ackermanLeft, 0, turntime*Time.deltaTime);
+			topRight.steerAngle = Mathf.Lerp(ackermanRight, 0, turntime*Time.deltaTime);
+		}
+		
+		else if (x < 0) 
+		{
+			ackermanLeft = Mathf.Rad2Deg * Mathf.Atan(wheelbase/(turnradius - (reartrack/2))) * x;
+			ackermanRight = Mathf.Rad2Deg * Mathf.Atan(wheelbase/(turnradius + (reartrack/2))) * x;
+			
+			topLeft.steerAngle = Mathf.Lerp(ackermanLeft, 0, turntime*Time.deltaTime);
+			topRight.steerAngle = Mathf.Lerp(ackermanRight, 0, turntime*Time.deltaTime);
+		}
+		
+		else 
+		{
+			ackermanLeft = 0;
+			ackermanRight = 0;
+			
+			topLeft.steerAngle = Mathf.Lerp(ackermanLeft, 0, turntime*Time.deltaTime);
+			topRight.steerAngle = Mathf.Lerp(ackermanRight, 0, turntime*Time.deltaTime);
+		}
+		
     }
 
     private void Brake()
@@ -148,6 +227,7 @@ public class Player1Movement : MonoBehaviour
         //print("terrain");
         //topLeft.motorTorque = 0;
         //topRight.motorTorque = 0;
+        SoundManager.Instance.PlayOneShot(collisionSound);
     }
 
     private void Update()
@@ -157,7 +237,7 @@ public class Player1Movement : MonoBehaviour
 
         //Debug.Log(speedBar);
 
-        Effects();
+        //Effects();
     }
 
     // all physics stuff goes here
@@ -169,7 +249,6 @@ public class Player1Movement : MonoBehaviour
         Brake();
         UpdateWheelPoses();
 
-        //Debug.Log();
     }
 
     

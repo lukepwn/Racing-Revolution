@@ -10,13 +10,51 @@ public class CountdownText : MonoBehaviour
     public GameObject player1Car;
     public GameObject player2Car;
 
+    private int p1;
+    private int p2;
+
     // Start is called before the first frame update
     void Start()
     {
         countdown = GetComponent<Text>();
         count = 3;
-        player1Car = GameObject.Find("Player1Car");
-        player2Car = GameObject.Find("Player2Car");
+
+        if (GameObject.Find("P1PURPLE") != null)
+        {
+            p1 = 1;
+        }
+        if (GameObject.Find("P1GREEN") != null)
+        {
+            p1 = 2;
+        }
+
+        if (GameObject.Find("P2PURPLE") != null)
+        {
+            p2 = 1;
+        }
+        if (GameObject.Find("P2GREEN") != null)
+        {
+            p2 = 2;
+        }
+
+        if (p1 == 1)
+        {
+            player1Car = GameObject.Find("P1PURPLE");
+        }
+        else
+        {
+            player1Car = GameObject.Find("P1GREEN");
+        }
+
+        if (p2 == 1)
+        {
+            player2Car = GameObject.Find("P2PURPLE");
+        }
+        else
+        {
+            player2Car = GameObject.Find("P2GREEN");
+        }
+
         player1Car.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionZ;
         player2Car.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionZ;
     }

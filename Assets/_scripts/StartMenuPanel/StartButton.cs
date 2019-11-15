@@ -26,6 +26,7 @@ public class StartButton : MonoBehaviour
         btn.onClick.AddListener(TaskOnClick);
         btn.onClick.AddListener(LightOn);
         btn.interactable = false;
+
     }
 
     void TaskOnClick()
@@ -54,6 +55,8 @@ public class StartButton : MonoBehaviour
         SoundManager.Instance.PauseMusic();
         SoundManager.Instance.PlayMusic(gameSoundTrack);
         SoundManager.Instance.setMusicVolume(0.2f);
+
+        SoundManager.Instance.PlayOneShot(SoundManager.Instance.buttonSound);
     }
 
     void LightOn()

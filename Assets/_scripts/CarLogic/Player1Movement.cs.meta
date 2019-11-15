@@ -3,7 +3,17 @@ guid: 508942219b877d246bc9ce5224023fa9
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - topLeft: {instanceID: 0}
+  - topRight: {instanceID: 0}
+  - botLeft: {instanceID: 0}
+  - botRight: {instanceID: 0}
+  - topRightT: {instanceID: 0}
+  - topLeftT: {instanceID: 0}
+  - rb: {instanceID: 0}
+  - exhaustEffect: {instanceID: 0}
+  - accelerate: {fileID: 8300000, guid: 760d8345ab59ee14da7398b8e67882d3, type: 3}
+  - collisionSound: {fileID: 8300000, guid: 7c32292ecb05e8e43972191d2203bb47, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

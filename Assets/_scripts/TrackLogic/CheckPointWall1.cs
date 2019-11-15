@@ -29,13 +29,13 @@ public class CheckPointWall1 : MonoBehaviour
     // turn on trigger on unity editor on the collider component
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.GetComponent<isCar1>().enabled == true)
+        if (other.gameObject.GetComponent<Player1Movement>().enabled == true)
         {
             P1Clear = true;
             Debug.Log("P1Checkpoint1 trigger");
         }
 
-        if (other.gameObject.GetComponent<isCar2>().enabled == true)
+        if (other.gameObject.GetComponent<Player2Movement>().enabled == true)
         {
             P2Clear = true;
             Debug.Log("P2Checkpoint1 trigger");

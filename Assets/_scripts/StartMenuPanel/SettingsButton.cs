@@ -12,13 +12,19 @@ public class SettingsButton : MonoBehaviour
     {
         Button btn = gameObject.GetComponent<Button>();
         btn.onClick.AddListener(TaskOnClick);
+        btn.Select();
     }
 
     void TaskOnClick()
     {
         settingsPanel.SetActive(true);
+
+        settingsPanel.transform.Find("P1Purple").GetComponent<Button>().Select();
+
         gameObject.transform.parent.gameObject.SetActive(false);
-        Debug.Log("turning off:" + gameObject.transform.parent.gameObject);
+
+
+        SoundManager.Instance.PlayOneShot(SoundManager.Instance.buttonSound);
     }
 
 }

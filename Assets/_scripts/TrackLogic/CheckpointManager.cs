@@ -27,6 +27,7 @@ public class CheckpointManager : MonoBehaviour
     // victory screen & music
     public GameObject EndGamePanel;
     public AudioClip victoryMusic;
+    private int gameEnded;
 
 
     void Awake()
@@ -47,6 +48,7 @@ public class CheckpointManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gameEnded = 0;
     }
 
     // Update is called once per frame
@@ -54,6 +56,11 @@ public class CheckpointManager : MonoBehaviour
     {
         checkPointTrack();
         LapCleared();
+        if (gameEnded == 1)
+        {
+            VictoryMusic();
+            gameEnded++;
+        }
     }
 
     void checkPointTrack()
@@ -118,10 +125,15 @@ public class CheckpointManager : MonoBehaviour
             EndGamePanel.SetActive(true);
             // freezes the game
             Time.timeScale = 0.0f;
-
-            SoundManager.Instance.PauseMusic();
-            SoundManager.Instance.PlayOneShot(victoryMusic);
-            SoundManager.Instance.setEffectVolume(0.1f);
+            gameEnded++;
         }
+    }
+
+    // play victory music once upon game finish
+    void VictoryMusic()
+    {
+        SoundManager.Instance.PauseMusic();
+        SoundManager.Instance.PlayOneShot(victoryMusic);
+        SoundManager.Instance.setEffectVolume(0.1f);
     }
 }

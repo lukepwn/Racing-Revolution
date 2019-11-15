@@ -18,6 +18,7 @@ public class InstructionsBackButton : MonoBehaviour
     {
         menuPanel.SetActive(true);
         gameObject.transform.parent.gameObject.SetActive(false);
-        Debug.Log("turning off" + gameObject.transform.parent.gameObject);
+
+        SoundManager.Instance.PlayOneShot(SoundManager.Instance.buttonSound);
     }
 }

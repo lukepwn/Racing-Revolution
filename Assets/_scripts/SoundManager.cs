@@ -8,6 +8,7 @@ public class SoundManager : MonoBehaviour
     public AudioSource EffectsSource;
     public AudioSource MusicSource;
     public AudioClip menuMusic;
+    public AudioClip buttonSound;
 
     public static SoundManager Instance = null;
 
@@ -53,9 +54,6 @@ public class SoundManager : MonoBehaviour
     {
         EffectsSource.volume = volume;
     }
-
-
-
 
 
 

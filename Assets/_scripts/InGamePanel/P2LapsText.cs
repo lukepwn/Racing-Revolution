@@ -17,7 +17,7 @@ public class P2LapsText : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        laps.text = "Laps: "
+        laps.text = "Lap "
             + CheckpointManager.instance.P2Laps.ToString()
             + "/1";
     }
