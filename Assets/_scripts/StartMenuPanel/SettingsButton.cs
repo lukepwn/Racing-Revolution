@@ -17,11 +17,22 @@ public class SettingsButton : MonoBehaviour
 
     void TaskOnClick()
     {
-        settingsPanel.SetActive(true);
+        
+		if (settingsPanel.transform.name == "SettingsPanel")
+		{
+			settingsPanel.SetActive(true);
+			settingsPanel.transform.Find("P1Purple").GetComponent<Button>().Select();
 
-        settingsPanel.transform.Find("P1Purple").GetComponent<Button>().Select();
-
-        gameObject.transform.parent.gameObject.SetActive(false);
+			gameObject.transform.parent.gameObject.SetActive(false);
+		}
+		
+		else
+		{
+			settingsPanel.SetActive(true);
+            settingsPanel.transform.Find("1Player").GetComponent<Button>().Select();
+            gameObject.transform.parent.gameObject.SetActive(false);
+			
+		}
 
 
         SoundManager.Instance.PlayOneShot(SoundManager.Instance.buttonSound);

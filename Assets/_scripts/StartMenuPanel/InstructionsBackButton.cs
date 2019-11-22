@@ -17,6 +17,8 @@ public class InstructionsBackButton : MonoBehaviour
     void TaskOnClick()
     {
         menuPanel.SetActive(true);
+        // highlight start menu button
+        menuPanel.transform.GetChild(0).GetComponent<Button>().Select();
         gameObject.transform.parent.gameObject.SetActive(false);
 
         SoundManager.Instance.PlayOneShot(SoundManager.Instance.buttonSound);

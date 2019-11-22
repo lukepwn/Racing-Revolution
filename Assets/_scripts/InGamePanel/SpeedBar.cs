@@ -30,10 +30,14 @@ public class SpeedBar : MonoBehaviour
 	
 	private void WarningText() 
 	{
-		if (Player1Movement.speedText > 180) 
+		//Debug.Log(Player1Movement.slipText);
+		if (Player1Movement.speedText > 250 && Player1Movement.slipText != "Drifting!!!") 
 		{
 			warning.text = "Slow down!!!";
 		}
+		
+		else if (Player1Movement.slipText != null)
+			warning.text = Player1Movement.slipText;
 		
 		else 
 		{

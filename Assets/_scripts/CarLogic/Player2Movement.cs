@@ -7,9 +7,15 @@ public class Player2Movement : MonoBehaviour
 {
     SpeedBar speedBar;
     public static float speedText;
+	public static string slipText = "";
 	
-    public WheelCollider topLeft, topRight, botLeft, botRight;
-    public Transform topRightT, topLeftT;
+	[Header("Car_Specs")]
+    public WheelCollider topLeft;
+	public WheelCollider topRight;
+	public WheelCollider botLeft;
+	public WheelCollider botRight;
+    public Transform topRightT;
+	public Transform topLeftT;
     public Rigidbody rb;
     public ParticleSystem exhaustEffect;
 
@@ -23,10 +29,11 @@ public class Player2Movement : MonoBehaviour
     private float decelerationSpeed = 30f;
     private float x;
     private float y;
-    private float maxSpeed = 30;
+    private float maxSpeed = 30f;
 	private float currentRPM;
-	private float maxRPM = 3000;
-	private float motorForce = 1000;
+	private float maxRPM = 3000f;
+	private float motorForce = 1000f;
+	private float antiRoll = 5000.0f;
 
 	[Header("Ackermann_Specs")]
 	public float ackermanLeft;
@@ -91,6 +98,59 @@ public class Player2Movement : MonoBehaviour
             exhaustEffect.loop = false;
         }
     }
+	
+	private void AntiRoll () 
+	{
+		WheelHit hit;
+		var travelL = 1.0;
+		var travelR = 1.0;
+		var travelTL = 1.0;
+		var travelTR = 1.0;
+	 
+		var groundedL = botLeft.GetGroundHit(out hit);
+		var groundedR = botRight.GetGroundHit(out hit);
+		var groundedTL = topRight.GetGroundHit(out hit);
+		var groundedTR = topLeft.GetGroundHit(out hit);
+		
+		if (hit.sidewaysSlip > 0.5 || hit.sidewaysSlip < -0.5)
+			slipText = "Drifting!!!";
+		else
+			slipText = "";
+		
+		if (groundedL)
+			travelL = (-botLeft.transform.InverseTransformPoint(hit.point).y - botLeft.radius) / botLeft.suspensionDistance;
+		
+		if (groundedR)
+			travelR = (-botRight.transform.InverseTransformPoint(hit.point).y - botRight.radius) / botRight.suspensionDistance;
+
+		if (groundedTL)
+			travelTL = (-topRight.transform.InverseTransformPoint(hit.point).y - topRight.radius) / topRight.suspensionDistance;
+
+		if (groundedTR)
+			travelTR = (-topLeft.transform.InverseTransformPoint(hit.point).y - topLeft.radius) / topLeft.suspensionDistance;
+	 
+		float antiRollForce = (float)(travelL - travelR) * antiRoll;
+		float antiRollForce2 = (float)(travelTL - travelTR) * antiRoll;
+		
+		//Debug.Log(antiRollForce);
+		
+		if (groundedL)
+			GetComponent<Rigidbody>().AddForceAtPosition(botLeft.transform.up * -antiRollForce,
+				   botLeft.transform.position);  
+				   
+		if (groundedR)
+			GetComponent<Rigidbody>().AddForceAtPosition(botRight.transform.up * antiRollForce,
+				   botRight.transform.position);  
+				   
+	    if (groundedTL)
+			GetComponent<Rigidbody>().AddForceAtPosition(topLeft.transform.up * -antiRollForce,
+				   topLeft.transform.position);  
+				   
+		if (groundedTR)
+			GetComponent<Rigidbody>().AddForceAtPosition(topRight.transform.up * antiRollForce,
+				   topRight.transform.position);  
+	}
+		
     public void Movement()
     {
 
@@ -106,7 +166,7 @@ public class Player2Movement : MonoBehaviour
 				botLeft.motorTorque = y * motorForce;
 				botRight.motorTorque = y * motorForce;
 				
-				Debug.Log(rb.velocity.magnitude);
+				//Debug.Log(rb.velocity.magnitude);
 				
 				
 				
@@ -271,6 +331,7 @@ public class Player2Movement : MonoBehaviour
         Steer();
         Brake();
         UpdateWheelPoses();
+		AntiRoll();
 
         //Debug.Log();
     }

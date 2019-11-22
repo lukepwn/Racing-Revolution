@@ -12,8 +12,12 @@ public class ChooseCarButton : MonoBehaviour
     public GameObject P2Camera;
     public GameObject Spawnpoint1;
     public GameObject Spawnpoint2;
+    public GameObject Heli;
+	
+	public Button p2purple;
+	public Button p2green;
+	public Button cpu;
 
-   
     // enable start button
     public Button startButton;
 
@@ -26,8 +30,18 @@ public class ChooseCarButton : MonoBehaviour
         btn.onClick.AddListener(TaskOnClick);
 
         buttonName = this.gameObject.transform.name;
+		togglebtn(false);
     }
 
+	private void togglebtn(bool toggle)
+	{
+		p2green.enabled = toggle;
+		p2purple.enabled = toggle;
+		cpu.enabled = toggle;
+		
+	}
+	
+	
     void TaskOnClick()
     {
         switch (buttonName)
@@ -37,25 +51,36 @@ public class ChooseCarButton : MonoBehaviour
                 Destroy(GameObject.Find("P1PURPLE"));
                 Destroy(GameObject.Find("P1GREEN"));;
                 CreateCar(1, "PURPLE");
+				togglebtn(true);
                 break;
             case "P1Green":
                 Debug.Log("P1GREEN");
                 Destroy(GameObject.Find("P1PURPLE"));
                 Destroy(GameObject.Find("P1GREEN")); ;
                 CreateCar(1, "GREEN");
+				togglebtn(true);
                 break;
             case "P2Purple":
                 Debug.Log("P2PURPLE");
                 Destroy(GameObject.Find("P2PURPLE"));
                 Destroy(GameObject.Find("P2GREEN")); ;
                 CreateCar(2, "PURPLE");
+				HeliOff();
                 break;
+				
             case "P2Green":
                 Debug.Log("P2GREEN");
                 Destroy(GameObject.Find("P2PURPLE"));
                 Destroy(GameObject.Find("P2GREEN")); ;
                 CreateCar(2, "GREEN");
+				HeliOff();
                 break;
+				
+			case "CPU":
+				
+				HeliOn();
+				break;
+				
             default:
                 Debug.Log("Button not mapped");
                 break;
@@ -67,6 +92,22 @@ public class ChooseCarButton : MonoBehaviour
         SoundManager.Instance.PlayOneShot(SoundManager.Instance.buttonSound);
     }
 
+	private void HeliOff()
+	{
+		Heli.SetActive(false);
+	}
+	
+	private void HeliOn()
+	{
+		Destroy(GameObject.Find("P2PURPLE"));
+        Destroy(GameObject.Find("P2GREEN"));
+		Heli.SetActive(true);
+		AIWaypoints.speed = 0;
+		
+
+		GameObject.Find("P1Camera(Clone)").GetComponent<Camera>().rect = new Rect(0f, 0f, 1f, 1f);
+	}
+	
     private void CreateCar(int player, string car)
     {
         switch (player)
@@ -76,6 +117,7 @@ public class ChooseCarButton : MonoBehaviour
                 if (car == "PURPLE")
                 {
                     GameObject carClone = Instantiate(Car1, Spawnpoint1.transform.position, Spawnpoint1.transform.rotation);
+					
                     carClone.name = "P1PURPLE";
                     carClone.GetComponent<Player1Movement>().enabled = true;
                     GameObject cameraClone = Instantiate(P1Camera, carClone.transform.position + new Vector3(0, 3, 6), carClone.transform.rotation);
@@ -87,6 +129,7 @@ public class ChooseCarButton : MonoBehaviour
                 {
                     GameObject carClone = Instantiate(Car2, Spawnpoint1.transform.position, Spawnpoint1.transform.rotation);
                     carClone.name = "P1GREEN";
+					
                     carClone.GetComponent<Player1Movement>().enabled = true;
                     GameObject cameraClone = Instantiate(P1Camera, carClone.transform.position + new Vector3(0, 3, 6), carClone.transform.rotation);
                     cameraClone.transform.SetParent(carClone.transform);

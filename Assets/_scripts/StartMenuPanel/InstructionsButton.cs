@@ -18,6 +18,9 @@ public class InstructionsButton : MonoBehaviour
     void TaskOnClick()
     {
         instructionsPanel.SetActive(true);
+
+        // highlight instructions back button
+        instructionsPanel.transform.GetChild(4).GetComponent<Button>().Select();
         gameObject.transform.parent.gameObject.SetActive(false);
 
         SoundManager.Instance.PlayOneShot(SoundManager.Instance.buttonSound);

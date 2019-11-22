@@ -63,6 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\_scripts\AIWaypoints.cs" />
     <Compile Include="Assets\_scripts\CameraSwitch.cs" />
     <Compile Include="Assets\_scripts\CameraTopDown.cs" />
     <Compile Include="Assets\_scripts\CarLogic\Player1Movement.cs" />
@@ -131,6 +132,7 @@
     <None Include="Assets\Wireframe\Shaders\Resources\WireframeShaded-Unlit-Global.shader" />
     <None Include="Assets\RoadArchitect\Shaders\GSDRoadShaderDX11.shader" />
     <None Include="Assets\RoadArchitect\Shaders\GSDRoadShader.shader" />
+    <None Include="Assets\AssetStore\Heli1\Info.txt" />
     <None Include="Assets\RoadArchitect\Shaders\GSDShoulderDirtDX11.shader" />
     <None Include="Assets\Wireframe\Shaders\Resources\Wireframe-Global.shader" />
     <None Include="Assets\README.txt" />

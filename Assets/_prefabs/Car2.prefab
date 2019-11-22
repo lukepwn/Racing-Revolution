@@ -275,8 +275,8 @@ WheelCollider:
   m_Center: {x: 0, y: 0, z: 0}
   m_Radius: 0.25
   m_SuspensionSpring:
-    spring: 60000
-    damper: 9000
+    spring: 500000
+    damper: 5000
     targetPosition: 1
   m_SuspensionDistance: 0.08
   m_ForceAppPointDistance: 0
@@ -293,7 +293,7 @@ WheelCollider:
     m_ExtremumValue: 2.4
     m_AsymptoteSlip: 1
     m_AsymptoteValue: 10
-    m_Stiffness: 0.7
+    m_Stiffness: 0.5
   m_Enabled: 1
 --- !u!1 &1820801181833659016
 GameObject:
@@ -359,8 +359,8 @@ WheelCollider:
   m_Center: {x: 0, y: 0, z: 0}
   m_Radius: 0.25
   m_SuspensionSpring:
-    spring: 60000
-    damper: 9000
+    spring: 500000
+    damper: 5000
     targetPosition: 1
   m_SuspensionDistance: 0.08
   m_ForceAppPointDistance: 0
@@ -377,7 +377,7 @@ WheelCollider:
     m_ExtremumValue: 2.4
     m_AsymptoteSlip: 1
     m_AsymptoteValue: 10
-    m_Stiffness: 0.7
+    m_Stiffness: 0.5
   m_Enabled: 1
 --- !u!1 &1820801181864152998
 GameObject:
@@ -1085,8 +1085,8 @@ WheelCollider:
   m_Center: {x: 0, y: 0, z: 0}
   m_Radius: 0.25
   m_SuspensionSpring:
-    spring: 60000
-    damper: 9000
+    spring: 500000
+    damper: 5000
     targetPosition: 1
   m_SuspensionDistance: 0.08
   m_ForceAppPointDistance: 0
@@ -1103,7 +1103,7 @@ WheelCollider:
     m_ExtremumValue: 2.4
     m_AsymptoteSlip: 1
     m_AsymptoteValue: 10
-    m_Stiffness: 0.7
+    m_Stiffness: 0.5
   m_Enabled: 1
 --- !u!1 &1820801182438636229
 GameObject:
@@ -1322,8 +1322,8 @@ WheelCollider:
   m_Center: {x: 0, y: 0, z: 0}
   m_Radius: 0.25
   m_SuspensionSpring:
-    spring: 60000
-    damper: 9000
+    spring: 500000
+    damper: 5000
     targetPosition: 1
   m_SuspensionDistance: 0.08
   m_ForceAppPointDistance: 0
@@ -1340,7 +1340,7 @@ WheelCollider:
     m_ExtremumValue: 2.4
     m_AsymptoteSlip: 1
     m_AsymptoteValue: 10
-    m_Stiffness: 0.7
+    m_Stiffness: 0.5
   m_Enabled: 1
 --- !u!1 &1820801182865476943
 GameObject:
@@ -6684,6 +6684,98 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!1 &5725538572065790433
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1484811038502933532}
+  - component: {fileID: 3066931219741716816}
+  - component: {fileID: 2579395243119132959}
+  - component: {fileID: 7261298919202075932}
+  m_Layer: 10
+  m_Name: Sphere
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1484811038502933532
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5725538572065790433}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.000030517578, y: 0.85443115, z: 0.10266113}
+  m_LocalScale: {x: 50, y: 50, z: 50}
+  m_Children: []
+  m_Father: {fileID: 5739574282762187213}
+  m_RootOrder: 21
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &3066931219741716816
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5725538572065790433}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &2579395243119132959
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5725538572065790433}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 3d9c5e0f4c265a14692c32fbef774d92, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!135 &7261298919202075932
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5725538572065790433}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5739574282762481037
 GameObject:
   m_ObjectHideFlags: 0
@@ -7286,6 +7378,7 @@ Transform:
   - {fileID: 5276663912774823681}
   - {fileID: 3039084143343423033}
   - {fileID: 1820801183366867674}
+  - {fileID: 1484811038502933532}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

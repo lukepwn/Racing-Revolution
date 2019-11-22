@@ -7,9 +7,15 @@ public class Player1Movement : MonoBehaviour
 {
     SpeedBar speedBar;
     public static float speedText;
+	public static string slipText = "";
 	
-    public WheelCollider topLeft, topRight, botLeft, botRight;
-    public Transform topRightT, topLeftT;
+	[Header("Car_Specs")]
+    public WheelCollider topLeft;
+	public WheelCollider topRight;
+	public WheelCollider botLeft;
+	public WheelCollider botRight;
+    public Transform topRightT;
+	public Transform topLeftT;
     public Rigidbody rb;
     public ParticleSystem exhaustEffect;
 
@@ -20,13 +26,14 @@ public class Player1Movement : MonoBehaviour
 	[Header("Movement_Specs")]
     public float speedCount;
 	
-    private float decelerationSpeed = 30f;
+    private float decelerationSpeed = 50f;
     private float x;
     private float y;
-    private float maxSpeed = 17;
+    private float maxSpeed = 30f;
 	private float currentRPM;
-	private float maxRPM = 3000;
-	private float motorForce = 500;
+	private float maxRPM = 3000f;
+	private float motorForce = 2500f;
+	private float antiRoll = 5000f;
 
 	[Header("Ackermann_Specs")]
 	public float ackermanLeft;
@@ -70,15 +77,75 @@ public class Player1Movement : MonoBehaviour
             exhaustEffect.loop = false;
         }
     } */
+	
+	private void AntiRoll () 
+	{
+		WheelHit hit;
+		var travelL = 1.0;
+		var travelR = 1.0;
+		var travelTL = 1.0;
+		var travelTR = 1.0;
+	 
+		var groundedL = botLeft.GetGroundHit(out hit);
+		var groundedR = botRight.GetGroundHit(out hit);
+		var groundedTL = topRight.GetGroundHit(out hit);
+		var groundedTR = topLeft.GetGroundHit(out hit);
+		
+		
+		//Debug.Log(hit.sidewaysSlip);
+		if (hit.sidewaysSlip > 0.5 || hit.sidewaysSlip < -0.5)
+			slipText = "Drifting!!!";
+		else
+			slipText = "";
+		
+		if (groundedL)
+			travelL = (-botLeft.transform.InverseTransformPoint(hit.point).y - botLeft.radius) / botLeft.suspensionDistance;
+		
+		if (groundedR)
+			travelR = (-botRight.transform.InverseTransformPoint(hit.point).y - botRight.radius) / botRight.suspensionDistance;
+
+		if (groundedTL)
+			travelTL = (-topRight.transform.InverseTransformPoint(hit.point).y - topRight.radius) / topRight.suspensionDistance;
+
+		if (groundedTR)
+			travelTR = (-topLeft.transform.InverseTransformPoint(hit.point).y - topLeft.radius) / topLeft.suspensionDistance;
+	 
+		float antiRollForce = (float)(travelL - travelR) * antiRoll;
+		float antiRollForce2 = (float)(travelTL - travelTR) * antiRoll;
+		
+		//Debug.Log(antiRollForce);
+		
+		if (groundedL)
+			GetComponent<Rigidbody>().AddForceAtPosition(botLeft.transform.up * -antiRollForce,
+				   botLeft.transform.position);  
+				   
+		if (groundedR)
+			GetComponent<Rigidbody>().AddForceAtPosition(botRight.transform.up * antiRollForce,
+				   botRight.transform.position);  
+				   
+	    if (groundedTL)
+			GetComponent<Rigidbody>().AddForceAtPosition(topLeft.transform.up * -antiRollForce,
+				   topLeft.transform.position);  
+				   
+		if (groundedTR)
+			GetComponent<Rigidbody>().AddForceAtPosition(topRight.transform.up * antiRollForce,
+				   topRight.transform.position);  
+	}
+
     public void Movement()
     {
 
-		Debug.Log(topLeft.motorTorque);
+		/* Debug.Log(topLeft.sidewaysFriction);
+		Debug.Log(topRight.sidewaysFriction);
+		Debug.Log(botLeft.sidewaysFriction);
+		Debug.Log(botRight.sidewaysFriction); */
 		//Debug.Log(motorForce);
         // use magnitude for length - always positive
         if (rb.velocity.magnitude < maxSpeed)
         {
-			if (motorForce < maxRPM) 
+			//Debug.Log(topLeft.rpm);
+			//Debug.Log(motorForce);
+			if (topLeft.rpm < maxRPM) 
 			{
 				//acceleration
 				topLeft.motorTorque = y * motorForce;
@@ -87,20 +154,27 @@ public class Player1Movement : MonoBehaviour
 				botRight.motorTorque = y * motorForce;
 				
 				
-				//if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKey(KeyCode.UpArrow))
-					//motorForce += 1f;
-				
-				//else
-					//motorForce -= 1f;
+				if (rb.velocity.magnitude < 10)
+					motorForce = 9000f;
+				else 
+					motorForce = 2500f;
+					
 				
 				//motorForce = y * motorForce;
 				//Debug.Log(topLeft.motorTorque); // always 300
 				//currentRPM += 1 * Time.deltaTime;
 				//SoundManager.Instance.PlayOneShot(accelerate);
+				
 			}
 			
 			else 
-				ShiftGear();
+			{
+				topLeft.motorTorque = 0;
+				topRight.motorTorque = 0;
+				botLeft.motorTorque = 0;
+				botRight.motorTorque = 0;
+				
+			}
         }
 
         else
@@ -248,6 +322,7 @@ public class Player1Movement : MonoBehaviour
         Steer();
         Brake();
         UpdateWheelPoses();
+		AntiRoll();
 
     }
 

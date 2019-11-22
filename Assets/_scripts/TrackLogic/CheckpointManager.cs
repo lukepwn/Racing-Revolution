@@ -29,6 +29,9 @@ public class CheckpointManager : MonoBehaviour
     public AudioClip victoryMusic;
     private int gameEnded;
 
+    // disable minimap
+    public GameObject minimap;
+
 
     void Awake()
     {
@@ -122,6 +125,8 @@ public class CheckpointManager : MonoBehaviour
     {
         if (P1Laps == 1 || P2Laps == 1)
         {
+            // disable minimap & enable victory screen
+            minimap.SetActive(false);
             EndGamePanel.SetActive(true);
             // freezes the game
             Time.timeScale = 0.0f;

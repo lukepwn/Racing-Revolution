@@ -5,13 +5,17 @@ using UnityEngine.UI;
 
 public class CountdownText : MonoBehaviour
 {
-    private float count;
+    public static float count = 3;
     Text countdown;
     public GameObject player1Car;
     public GameObject player2Car;
+	public GameObject heli;
+	
+    public GameObject minimap;
 
     private int p1;
     private int p2;
+	private int p3;
 
     // Start is called before the first frame update
     void Start()
@@ -37,23 +41,34 @@ public class CountdownText : MonoBehaviour
             p2 = 2;
         }
 
+
+		//--------------------------------
+
         if (p1 == 1)
         {
             player1Car = GameObject.Find("P1PURPLE");
         }
-        else
+        else 
         {
             player1Car = GameObject.Find("P1GREEN");
         }
+
+		
+		//-----------------------------
 
         if (p2 == 1)
         {
             player2Car = GameObject.Find("P2PURPLE");
         }
-        else
+        else if (p2 == 2)
         {
             player2Car = GameObject.Find("P2GREEN");
         }
+		
+		else 
+		{
+			player2Car = heli;
+		}
 
         player1Car.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionZ;
         player2Car.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionZ;
@@ -70,6 +85,10 @@ public class CountdownText : MonoBehaviour
             player1Car.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
             player2Car.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
             this.transform.parent.gameObject.SetActive(false);
+
+            minimap.SetActive(true);
+			AIWaypoints.speed = 20;
+
         }
     }
 }

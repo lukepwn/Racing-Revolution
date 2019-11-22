@@ -17,7 +17,7 @@ public class SettingsBackButton : MonoBehaviour
     void TaskOnClick()
     {
         menuPanel.SetActive(true);
-
+        // highlight start menu button
         menuPanel.transform.GetChild(0).GetComponent<Button>().Select();
 
         gameObject.transform.parent.gameObject.SetActive(false);

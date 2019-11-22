@@ -21,20 +21,39 @@ public class LightSwitch : MonoBehaviour
 
     private void Distance()
     {
-        Transform car1 = car[0].transform;
-        Transform car2 = car[1].transform;
-        float dist1 = Vector3.Distance(car1.position, this.transform.position);
-        float dist2 = Vector3.Distance(car2.position, this.transform.position);
+		if (car.Length == 2) 
+		{
+			Transform car1 = car[0].transform;
+			Transform car2 = car[1].transform;
+			float dist1 = Vector3.Distance(car1.position, this.transform.position);
+			float dist2 = Vector3.Distance(car2.position, this.transform.position);
 
-        if (dist1 < maxDist || dist2 < maxDist)
-        {
-            light.enabled = true;
-        }
+			if (dist1 < maxDist || dist2 < maxDist)
+			{
+				light.enabled = true;
+			}
 
-        else
-        {
-            light.enabled = false;
-        }
+			else
+			{
+				light.enabled = false;
+			}
+		}
+		
+		else
+		{
+			Transform car1 = car[0].transform;
+			float dist1 = Vector3.Distance(car1.position, this.transform.position);
+			
+			if (dist1 < maxDist)
+			{
+				light.enabled = true;
+			}
+
+			else
+			{
+				light.enabled = false;
+			}
+		}
 
     }
 
