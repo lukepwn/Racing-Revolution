@@ -1,4 +1,9 @@
-﻿using System.Collections;
+﻿/*
+	Global Singleton Sound manager script 
+	By: Kevin Kim
+*/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

@@ -1,4 +1,9 @@
-﻿using System.Collections;
+﻿/*
+	UI: Text for P1 laps count
+	By: Kevin Kim
+*/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;

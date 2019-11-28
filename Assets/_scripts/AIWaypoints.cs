@@ -1,4 +1,10 @@
-﻿using System.Collections;
+﻿/*
+	AI Movement and calculations
+	By: Luke Dam
+
+*/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

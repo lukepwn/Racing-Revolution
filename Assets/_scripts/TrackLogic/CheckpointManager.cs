@@ -1,4 +1,9 @@
-﻿using System.Collections;
+﻿/*
+	global manager for handling checkpoint checks
+	By: Kevin Kim
+*/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,6 +23,7 @@ public class CheckpointManager : MonoBehaviour
     // laps count for each player
     public int P1Laps = 0;
     public int P2Laps = 0;
+    public int AILaps = 0;
 
     public GameObject CheckpointWall1;
     public GameObject CheckpointWall2;
@@ -68,7 +74,7 @@ public class CheckpointManager : MonoBehaviour
 
     void checkPointTrack()
     {
-        // tracking first car
+        // checkpoint tracking first car
         if (CheckPointWall1.instance.P1Clear)
         {
             cleared1num = 1;
@@ -93,7 +99,7 @@ public class CheckpointManager : MonoBehaviour
                 }
             }
         }
-        // tracking second car
+        // checkpoint tracking second car
         if (CheckPointWall1.instance.P2Clear)
         {
             cleared2num = 1;
@@ -118,12 +124,18 @@ public class CheckpointManager : MonoBehaviour
                 }
             }
         }
+
+        // AI needs to just hit the last checkpoint
+        if (CheckPointWall4.instance.AIClear)
+        {
+            AILaps++;
+        }
     } 
 
     // method for showing the victory screen upon completing a lap
     void LapCleared()
     {
-        if (P1Laps == 1 || P2Laps == 1)
+        if (P1Laps == 1 || P2Laps == 1 || AILaps == 1)
         {
             // disable minimap & enable victory screen
             minimap.SetActive(false);

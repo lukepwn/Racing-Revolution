@@ -65,7 +65,6 @@
   <ItemGroup>
     <Compile Include="Assets\_scripts\AIWaypoints.cs" />
     <Compile Include="Assets\_scripts\CameraSwitch.cs" />
-    <Compile Include="Assets\_scripts\CameraTopDown.cs" />
     <Compile Include="Assets\_scripts\CarLogic\Player1Movement.cs" />
     <Compile Include="Assets\_scripts\CarLogic\Player2Movement.cs" />
     <Compile Include="Assets\_scripts\InGamePanel\CountdownText.cs" />
@@ -77,14 +76,11 @@
     <Compile Include="Assets\_scripts\InGamePanel\RestartButton.cs" />
     <Compile Include="Assets\_scripts\InGamePanel\SpeedBar.cs" />
     <Compile Include="Assets\_scripts\InGamePanel\SpeedBar2.cs" />
-    <Compile Include="Assets\_scripts\InGamePanel\Speedometer.cs" />
     <Compile Include="Assets\_scripts\InGamePanel\VictoryPlayerNameText.cs" />
     <Compile Include="Assets\_scripts\SoundManager.cs" />
-    <Compile Include="Assets\_scripts\StartMenuPanel\CheckpointsText.cs" />
     <Compile Include="Assets\_scripts\StartMenuPanel\ChooseCarButton.cs" />
     <Compile Include="Assets\_scripts\StartMenuPanel\InstructionsBackButton.cs" />
     <Compile Include="Assets\_scripts\StartMenuPanel\InstructionsButton.cs" />
-    <Compile Include="Assets\_scripts\StartMenuPanel\LapsText.cs" />
     <Compile Include="Assets\_scripts\StartMenuPanel\SettingsBackButton.cs" />
     <Compile Include="Assets\_scripts\StartMenuPanel\SettingsButton.cs" />
     <Compile Include="Assets\_scripts\StartMenuPanel\StartButton.cs" />

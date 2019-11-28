@@ -1,11 +1,16 @@
-﻿using System.Collections;
+﻿/*
+	The text logic for the countdown
+	By: Kevin Kim
+*/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class CountdownText : MonoBehaviour
 {
-    public static float count = 3;
+    public float count = 3;
     Text countdown;
     public GameObject player1Car;
     public GameObject player2Car;
@@ -13,9 +18,8 @@ public class CountdownText : MonoBehaviour
 	
     public GameObject minimap;
 
-    private int p1;
-    private int p2;
-	private int p3;
+    public static int p1;
+    public static int p2;
 
     // Start is called before the first frame update
     void Start()
@@ -41,9 +45,6 @@ public class CountdownText : MonoBehaviour
             p2 = 2;
         }
 
-
-		//--------------------------------
-
         if (p1 == 1)
         {
             player1Car = GameObject.Find("P1PURPLE");
@@ -52,9 +53,6 @@ public class CountdownText : MonoBehaviour
         {
             player1Car = GameObject.Find("P1GREEN");
         }
-
-		
-		//-----------------------------
 
         if (p2 == 1)
         {
@@ -70,14 +68,17 @@ public class CountdownText : MonoBehaviour
 			player2Car = heli;
 		}
 
+        Debug.Log(player1Car);
+        Debug.Log(player2Car);
+
         player1Car.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionZ;
         player2Car.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionZ;
     }
 
     void Update()
     {
+        Debug.Log("count:" + count);
         count = count - Time.deltaTime;
-        //Debug.Log(count);
         countdown.text = count.ToString("F0");
 
         if (count <= 0)
@@ -87,7 +88,7 @@ public class CountdownText : MonoBehaviour
             this.transform.parent.gameObject.SetActive(false);
 
             minimap.SetActive(true);
-			AIWaypoints.speed = 20;
+			AIWaypoints.speed = 15;
 
         }
     }

@@ -1,4 +1,9 @@
-﻿using System.Collections;
+﻿/*
+	Checkpoint Wall 2's script for checking a player's passed status
+	By: Kevin Kim
+*/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

@@ -1,4 +1,9 @@
-﻿using System.Collections;
+﻿/*
+	Back button logic for the Start menu
+	By: Kevin Kim
+*/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;

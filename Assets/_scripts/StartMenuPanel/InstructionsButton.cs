@@ -1,4 +1,9 @@
-﻿using System.Collections;
+﻿/*
+	Instructions button logic for start menu
+	By: Kevin Kim
+*/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;

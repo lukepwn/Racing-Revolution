@@ -1,4 +1,8 @@
-﻿using System.Collections;
+﻿/*
+	Exit button logic for the victory screen
+	By: Kevin Kim
+*/
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;

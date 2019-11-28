@@ -1,4 +1,9 @@
-﻿using System.Collections;
+﻿/*
+	Restart button logic for victory screen
+	By: Kevin Kim
+*/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -26,6 +31,8 @@ public class RestartButton : MonoBehaviour
     {
         // Restart scene
         Debug.Log("restarting scene");
+        // set timescale to 1
+        Time.timeScale = 1.0f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

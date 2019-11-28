@@ -1,4 +1,8 @@
-﻿using System.Collections;
+﻿/*
+	UI: Text for P1 checkpoints count
+	By: Kevin Kim
+*/
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;

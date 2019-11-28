@@ -1,4 +1,9 @@
-﻿using System.Collections;
+﻿/*
+	Start button logic for starting the game
+	By: Kevin Kim
+*/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -31,23 +36,18 @@ public class StartButton : MonoBehaviour
 
     void TaskOnClick()
     {
-        Debug.Log("Turning on GameLevel");
-        GameLevel.SetActive(true);
         Debug.Log("Turning off Menu");
         MenuPanel.SetActive(false);
-        Debug.Log("Turning on IngamePanel");
+        Debug.Log("Turning on p1 & p2 panels");
         IngamePanel1.SetActive(true);
-        Debug.Log("Turning on IngamePanel2");
-        IngamePanel2.SetActive(true);
+        if (GameObject.Find("P2GREEN") || GameObject.Find("P2PURPLE"))
+        {
+            IngamePanel2.SetActive(true);
+        }
         Debug.Log("Turning on CheckpointManager");
         CheckpointManager.SetActive(true);
         Debug.Log("Turning on CountdownPanel");
         CountdownPanel.SetActive(true);
-
-        Debug.Log("Turning on Speedometer1");
-        SpeedometerPanel1.SetActive(true);
-        Debug.Log("Turning on Speedometer2");
-        SpeedometerPanel2.SetActive(true);
 
 
 

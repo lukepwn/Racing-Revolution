@@ -1,4 +1,14 @@
-﻿using System.Collections;
+﻿/*
+	Car WheelCollider movement, Ackermann steering and particle physics
+	By: Luke Dam
+	
+	AntiRoll() modified by Luke- source https://forum.unity.com/threads/how-to-make-a-physically-real-stable-car-with-wheelcolliders.50643/
+	
+	UpdateWheelPose() modified by Luke - source coderDaren-unity
+	
+*/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -61,9 +71,9 @@ public class Player1Movement : MonoBehaviour
         y = Input.GetAxis("Vertical_p2");
     }
 
-    /* private void Effects()
+    private void Effects()
     {
-        if (Input.GetKeyDown(KeyCode.W) || Input.GetKey(KeyCode.W))
+        /* if (Input.GetButton("Vertical_p2") == true)
         {
             // play particle effect
             exhaustEffect.Play();
@@ -75,8 +85,9 @@ public class Player1Movement : MonoBehaviour
         {
 			exhaustEffect.Stop();
             exhaustEffect.loop = false;
-        }
-    } */
+        } */
+		//exhaustEffect.Play();
+	}
 	
 	private void AntiRoll () 
 	{
@@ -154,10 +165,10 @@ public class Player1Movement : MonoBehaviour
 				botRight.motorTorque = y * motorForce;
 				
 				
-				if (rb.velocity.magnitude < 10)
+				/* if (rb.velocity.magnitude < 10)
 					motorForce = 9000f;
 				else 
-					motorForce = 2500f;
+					motorForce = 2500f; */
 					
 				
 				//motorForce = y * motorForce;
@@ -323,6 +334,7 @@ public class Player1Movement : MonoBehaviour
         Brake();
         UpdateWheelPoses();
 		AntiRoll();
+		Effects();
 
     }
 

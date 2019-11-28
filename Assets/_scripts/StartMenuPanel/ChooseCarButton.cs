@@ -1,4 +1,9 @@
-﻿using System.Collections;
+﻿/*
+	Choosing player 1 and player 2 car along with AI
+	By: Kevin Kim, Luke Dam
+*/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -37,11 +42,9 @@ public class ChooseCarButton : MonoBehaviour
 	{
 		p2green.enabled = toggle;
 		p2purple.enabled = toggle;
-		cpu.enabled = toggle;
-		
+		cpu.enabled = toggle;	
 	}
-	
-	
+
     void TaskOnClick()
     {
         switch (buttonName)
@@ -92,12 +95,15 @@ public class ChooseCarButton : MonoBehaviour
         SoundManager.Instance.PlayOneShot(SoundManager.Instance.buttonSound);
     }
 
-	private void HeliOff()
+    // turn off the AI, enable the player2's UI and set camera to split screen
+    private void HeliOff()
 	{
 		Heli.SetActive(false);
+		GameObject.Find("P1Camera(Clone)").GetComponent<Camera>().rect = new Rect(0f, 0f, 0.5f, 1f);
 	}
-	
-	private void HeliOn()
+
+    // turn on the AI, disable the player2's UI and set camera to full screen
+    private void HeliOn()
 	{
 		Destroy(GameObject.Find("P2PURPLE"));
         Destroy(GameObject.Find("P2GREEN"));

@@ -1,4 +1,9 @@
-﻿using System.Collections;
+﻿/*
+	Checkpoint Wall 4's script for checking a player's passed status
+	By: Kevin Kim
+*/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,6 +11,7 @@ public class CheckPointWall4 : MonoBehaviour
 {
     public bool P1Clear;
     public bool P2Clear;
+    public bool AIClear;
 
     public static CheckPointWall4 instance = null;
 
@@ -37,6 +43,12 @@ public class CheckPointWall4 : MonoBehaviour
         {
             P2Clear = true;
             Debug.Log("P2Checkpoint4 trigger");
+        }
+
+        if (other.gameObject.tag == "AI")
+        {
+            AIClear = true;
+            Debug.Log("AI Checkpoint4 trigger");
         }
     }
 

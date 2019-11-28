@@ -1,4 +1,8 @@
-﻿using System.Collections;
+﻿/*
+	UI: Text for P2 Speed count
+	By: Luke Dam
+*/
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
