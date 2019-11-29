@@ -6,6 +6,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CheckpointManager : MonoBehaviour
 {
@@ -140,6 +141,8 @@ public class CheckpointManager : MonoBehaviour
             // disable minimap & enable victory screen
             minimap.SetActive(false);
             EndGamePanel.SetActive(true);
+            Debug.Log(EndGamePanel.transform.GetChild(1).name);
+            EndGamePanel.transform.GetChild(1).GetComponent<Button>().Select();
             // freezes the game
             Time.timeScale = 0.0f;
             gameEnded++;

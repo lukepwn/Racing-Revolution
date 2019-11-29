@@ -64,7 +64,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\_scripts\AIWaypoints.cs" />
-    <Compile Include="Assets\_scripts\CameraSwitch.cs" />
     <Compile Include="Assets\_scripts\CarLogic\Player1Movement.cs" />
     <Compile Include="Assets\_scripts\CarLogic\Player2Movement.cs" />
     <Compile Include="Assets\_scripts\InGamePanel\CountdownText.cs" />

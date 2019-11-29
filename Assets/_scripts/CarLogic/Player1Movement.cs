@@ -18,6 +18,7 @@ public class Player1Movement : MonoBehaviour
     SpeedBar speedBar;
     public static float speedText;
 	public static string slipText = "";
+	public GameObject warning;
 	
 	[Header("Car_Specs")]
     public WheelCollider topLeft;
@@ -28,6 +29,8 @@ public class Player1Movement : MonoBehaviour
 	public Transform topLeftT;
     public Rigidbody rb;
     public ParticleSystem exhaustEffect;
+	private TrailRenderer tr1;
+	private TrailRenderer tr2;
 
 	[Header("Sound")]
     public AudioClip accelerate;
@@ -58,6 +61,8 @@ public class Player1Movement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+		tr1 = botLeft.GetComponent<TrailRenderer>();
+		tr2 = botRight.GetComponent<TrailRenderer>();
         rb.centerOfMass = new Vector3(0, -0.9f, 0);
 
         // find other script gameobject to access methods
@@ -105,9 +110,23 @@ public class Player1Movement : MonoBehaviour
 		
 		//Debug.Log(hit.sidewaysSlip);
 		if (hit.sidewaysSlip > 0.5 || hit.sidewaysSlip < -0.5)
-			slipText = "Drifting!!!";
+		{
+			//slipText = "Drifting!!!";
+			GameObject.Find("Canvas").transform.GetChild(8).gameObject.SetActive(true);
+			//warning.SetActive(true);
+			tr1.enabled = true;
+			tr2.enabled = true;
+		}
+			
 		else
-			slipText = "";
+		{
+			//slipText = "";
+			GameObject.Find("Canvas").transform.GetChild(8).gameObject.SetActive(false);
+			//{.SetActive(false);
+			//warning.SetActive(false);
+			tr1.enabled = false;
+			tr2.enabled = false;
+		}
 		
 		if (groundedL)
 			travelL = (-botLeft.transform.InverseTransformPoint(hit.point).y - botLeft.radius) / botLeft.suspensionDistance;

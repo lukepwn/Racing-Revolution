@@ -55,34 +55,52 @@ public class ChooseCarButton : MonoBehaviour
                 Destroy(GameObject.Find("P1GREEN"));;
                 CreateCar(1, "PURPLE");
 				togglebtn(true);
+                // remove previously selected button color and set this button color
+                selectedButton("P1Green", Color.gray);
+                selectedButton("P1Purple", Color.magenta);
                 break;
             case "P1Green":
                 Debug.Log("P1GREEN");
                 Destroy(GameObject.Find("P1PURPLE"));
-                Destroy(GameObject.Find("P1GREEN")); ;
+                Destroy(GameObject.Find("P1GREEN"));
                 CreateCar(1, "GREEN");
 				togglebtn(true);
+                selectedButton("P1Purple", Color.gray);
+                selectedButton("P1Green", Color.green);
                 break;
             case "P2Purple":
                 Debug.Log("P2PURPLE");
                 Destroy(GameObject.Find("P2PURPLE"));
-                Destroy(GameObject.Find("P2GREEN")); ;
+                Destroy(GameObject.Find("P2GREEN"));
                 CreateCar(2, "PURPLE");
 				HeliOff();
+                startButton.interactable = true;
+
+                selectedButton("P2Purple", Color.magenta);
+                selectedButton("P2Green", Color.gray);
+                selectedButton("CPU", Color.gray);
                 break;
 				
             case "P2Green":
                 Debug.Log("P2GREEN");
                 Destroy(GameObject.Find("P2PURPLE"));
-                Destroy(GameObject.Find("P2GREEN")); ;
+                Destroy(GameObject.Find("P2GREEN"));
                 CreateCar(2, "GREEN");
 				HeliOff();
+                startButton.interactable = true;
+                selectedButton("P2Purple", Color.gray);
+                selectedButton("P2Green", Color.green);
+                selectedButton("CPU", Color.gray);
                 break;
 				
 			case "CPU":
 				
 				HeliOn();
-				break;
+                startButton.interactable = true;
+                selectedButton("P2Purple", Color.gray);
+                selectedButton("P2Green", Color.gray);
+                selectedButton("CPU", Color.yellow);
+                break;
 				
             default:
                 Debug.Log("Button not mapped");
@@ -90,9 +108,12 @@ public class ChooseCarButton : MonoBehaviour
         }
 
 
-        startButton.interactable = true;
-
         SoundManager.Instance.PlayOneShot(SoundManager.Instance.buttonSound);
+    }
+
+    private void selectedButton(string buttonName, Color color)
+    {
+        GameObject.Find(buttonName).GetComponent<Button>().image.color = color;
     }
 
     // turn off the AI, enable the player2's UI and set camera to split screen
