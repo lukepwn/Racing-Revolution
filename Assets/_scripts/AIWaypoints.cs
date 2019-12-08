@@ -1,6 +1,8 @@
 ﻿/*
 	AI Movement and calculations
 	By: Luke Dam
+	
+	Source Idea: https://stackoverflow.com/questions/54911099/why-is-the-camera-not-rotating-to-face-the-first-waypoint
 
 */
 

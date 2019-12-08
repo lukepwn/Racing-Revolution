@@ -28,14 +28,14 @@ public class SpeedBar : MonoBehaviour
     private void Fill()
     {
         
-        bar.fillAmount = Player1Movement.speedText / 170;
+        bar.fillAmount = Player1Movement.speedText / 200;
         speed.text = Player1Movement.speedText + " KM/H";
     }
 	
 	private void WarningText() 
 	{
 		//Debug.Log(Player1Movement.slipText);
-		if (Player1Movement.speedText > 250 && Player1Movement.slipText != "Drifting!!!") 
+		if (Player1Movement.speedText > 150 && Player1Movement.slipText != "Drifting!!!") 
 		{
 			warning.text = "Slow down!!!";
 		}

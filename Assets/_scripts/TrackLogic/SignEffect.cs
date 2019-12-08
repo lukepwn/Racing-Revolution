@@ -1,4 +1,9 @@
-﻿using System.Collections;
+﻿/*
+	Sign rotation
+	By: Luke Dam
+*/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

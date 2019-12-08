@@ -28,7 +28,7 @@ public class SpeedBar2 : MonoBehaviour
     private void Fill()
     {
 
-        bar.fillAmount = Player2Movement.speedText / 170;
+        bar.fillAmount = Player2Movement.speedText / 200;
         speed.text = Player2Movement.speedText + " KM/H";
 
 
@@ -36,7 +36,7 @@ public class SpeedBar2 : MonoBehaviour
 	
 	private void WarningText() 
 	{
-		if (Player2Movement.speedText > 250 && Player2Movement.slipText != "Drifting!!!") 
+		if (Player2Movement.speedText > 150 && Player2Movement.slipText != "Drifting!!!") 
 		{
 			warning.text = "Slow down!!!";
 		}

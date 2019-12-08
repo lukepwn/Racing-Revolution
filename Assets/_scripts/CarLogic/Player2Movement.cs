@@ -39,10 +39,10 @@ public class Player2Movement : MonoBehaviour
     private float decelerationSpeed = 30f;
     private float x;
     private float y;
-    private float maxSpeed = 30f;
+    private float maxSpeed = 20f;
 	private float currentRPM;
 	private float maxRPM = 3000f;
-	private float motorForce = 1000f;
+	private float motorForce = 2000f;
 	private float antiRoll = 5000.0f;
 
 	[Header("Ackermann_Specs")]

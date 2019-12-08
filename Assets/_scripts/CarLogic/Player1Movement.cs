@@ -6,6 +6,8 @@
 	
 	UpdateWheelPose() modified by Luke - source coderDaren-unity
 	
+	Steer() modified by Luke - source multiple youtube and forums
+	
 */
 
 using System.Collections;
@@ -42,10 +44,10 @@ public class Player1Movement : MonoBehaviour
     private float decelerationSpeed = 50f;
     private float x;
     private float y;
-    private float maxSpeed = 30f;
+    private float maxSpeed = 20f;
 	private float currentRPM;
 	private float maxRPM = 3000f;
-	private float motorForce = 2500f;
+	private float motorForce = 2000f;
 	private float antiRoll = 5000f;
 
 	[Header("Ackermann_Specs")]
@@ -164,17 +166,10 @@ public class Player1Movement : MonoBehaviour
 
     public void Movement()
     {
-
-		/* Debug.Log(topLeft.sidewaysFriction);
-		Debug.Log(topRight.sidewaysFriction);
-		Debug.Log(botLeft.sidewaysFriction);
-		Debug.Log(botRight.sidewaysFriction); */
-		//Debug.Log(motorForce);
         // use magnitude for length - always positive
         if (rb.velocity.magnitude < maxSpeed)
         {
-			//Debug.Log(topLeft.rpm);
-			//Debug.Log(motorForce);
+			// check rpm
 			if (topLeft.rpm < maxRPM) 
 			{
 				//acceleration
@@ -182,18 +177,6 @@ public class Player1Movement : MonoBehaviour
 				topRight.motorTorque = y * motorForce;
 				botLeft.motorTorque = y * motorForce;
 				botRight.motorTorque = y * motorForce;
-				
-				
-				/* if (rb.velocity.magnitude < 10)
-					motorForce = 9000f;
-				else 
-					motorForce = 2500f; */
-					
-				
-				//motorForce = y * motorForce;
-				//Debug.Log(topLeft.motorTorque); // always 300
-				//currentRPM += 1 * Time.deltaTime;
-				//SoundManager.Instance.PlayOneShot(accelerate);
 				
 			}
 			
@@ -218,17 +201,8 @@ public class Player1Movement : MonoBehaviour
 			
 			
         }
-		//Debug.Log(currentRPM);
-
-
-        //if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) )
-
-        //gui
-        //rpmText.text = topLeft.motorTorque.ToString();
-        //speedText.text = Mathf.Round(rb.velocity.magnitude * 10) + " KM/H";
 
         speedText = Mathf.Round(rb.velocity.magnitude * 10);
-		
 		
     }
 
@@ -245,7 +219,7 @@ public class Player1Movement : MonoBehaviour
     private void Steer()
     {
         /* //steering based on max speed
-        var actualSpeed = rb.velocity.magnitude / 50;
+        var actualSpeed = rb.velocity.magnitude / maxSpeed;
         var currentSteer = Mathf.Lerp(10, 1, actualSpeed);
         currentSteer *= x;
 
